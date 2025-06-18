@@ -1,8 +1,8 @@
-import Hero from './pages/Hero';
+import Home from './pages/Home';
 import './styles.css';
 
 function App() {
-  return <Hero />;
+  return <Home />;
 }
 
 export default App;
