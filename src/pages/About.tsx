@@ -1,8 +1,8 @@
 interface AboutProps {
-  onNavigate: (page: string) => void;
+  onNavigate?: (page: string) => void; // Made optional
 }
 
-const About = ({ onNavigate }: AboutProps) => {
+const About = ({}: AboutProps) => {
   return (
     <main className="pt-24">
       {/* Hero Section */}

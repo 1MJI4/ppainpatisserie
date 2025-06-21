@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 
 interface GalleryProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (sectionId: string) => void;
 }
 
 // Définition des images de la galerie
@@ -84,7 +84,7 @@ const galleryItems = [
     }
 ];
 
-const Gallery = ({ onNavigate }: GalleryProps) => {
+const Gallery = ({}: GalleryProps) => {
     const [activeCategory, setActiveCategory] = useState('all');
     const [filteredItems, setFilteredItems] = useState(galleryItems);
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -222,6 +222,7 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
 
 
                                             <button
+                                                title="Voir plus de détails"
                                                 onClick={() => openDetail(item.id)}
                                                 className="border border-chocolate text-chocolate px-8 py-3 hover:bg-chocolate hover:text-white transition-colors duration-300"
                                             >
@@ -236,30 +237,35 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
                         {/* Navigation controls */}
                         <div className="absolute bottom-8 right-8 z-20 flex gap-4">
                             <button
+                                title="Image précédente"
+                                aria-label="Image précédente"
                                 onClick={prevSlide}
                                 className="w-12 h-12 rounded-full flex items-center justify-center border border-white/40 text-white hover:bg-white/10 transition-colors"
                             >
                                 <ChevronLeft className="w-5 h-5" />
                             </button>
                             <button
+                                title="Image suivante"
+                                aria-label="Image suivante"
                                 onClick={nextSlide}
                                 className="w-12 h-12 rounded-full flex items-center justify-center border border-white/40 text-white hover:bg-white/10 transition-colors"
                             >
                                 <ChevronRight className="w-5 h-5" />
                             </button>
-                        </div>
-
-                        {/* Elegant pagination */}
+                        </div>                        {/* Elegant pagination */}
                         <div className="absolute bottom-8 left-8 z-20 flex items-center space-x-3">
                             {featuredItems.map((_, index) => (
                                 <button
                                     key={index}
                                     onClick={() => setCurrentSlide(index)}
+                                    aria-label={`Afficher l'image ${index + 1}`}
                                     className={`transition-all duration-500 ${currentSlide === index
                                             ? 'w-8 h-[2px] bg-gold'
                                             : 'w-4 h-[1px] bg-white/60 hover:bg-white/80'
                                         }`}
-                                />
+                                >
+                                    <span className="sr-only">Diapositive {index + 1}</span>
+                                </button>
                             ))}
                         </div>
                     </div>
@@ -267,9 +273,9 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
 
                 {/* Elegant category filter */}
                 <div className="mb-16">
-                    <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-                        <button
+                    <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">                        <button
                             onClick={() => setActiveCategory('all')}
+                            aria-label="Afficher toutes les créations"
                             className={`px-6 py-2 text-sm uppercase tracking-widest transition-colors ${activeCategory === 'all'
                                     ? 'text-gold border-b border-gold'
                                     : 'text-chocolate/60 hover:text-chocolate/90'
@@ -279,6 +285,7 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
                         </button>
                         <button
                             onClick={() => setActiveCategory('ambiance')}
+                            aria-label="Filtrer par ambiance de notre boutique"
                             className={`px-6 py-2 text-sm uppercase tracking-widest transition-colors ${activeCategory === 'ambiance'
                                     ? 'text-gold border-b border-gold'
                                     : 'text-chocolate/60 hover:text-chocolate/90'
@@ -287,16 +294,18 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
                             Notre boutique
                         </button>
                         <button
-                            onClick={() => setActiveCategory('viennoiseries')}
+                            onClick={() => setActiveCategory('petites-douceurs')}
+                            aria-label="Filtrer par viennoiseries"
                             className={`px-6 py-2 text-sm uppercase tracking-widest transition-colors ${activeCategory === 'petites-douceurs'
                                     ? 'text-gold border-b border-gold'
                                     : 'text-chocolate/60 hover:text-chocolate/90'
                                 }`}
                         >
-                            viennoiseries
+                            Viennoiseries
                         </button>
                         <button
-                            onClick={() => setActiveCategory('Trompe-l\'œil')}
+                            onClick={() => setActiveCategory('specialites')}
+                            aria-label="Filtrer par trompe-l'œil"
                             className={`px-6 py-2 text-sm uppercase tracking-widest transition-colors ${activeCategory === 'specialites'
                                     ? 'text-gold border-b border-gold'
                                     : 'text-chocolate/60 hover:text-chocolate/90'
@@ -305,13 +314,14 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
                             Trompe-l'œil
                         </button>
                         <button
-                            onClick={() => setActiveCategory('salées')}
+                            onClick={() => setActiveCategory('gateaux')}
+                            aria-label="Filtrer par créations salées"
                             className={`px-6 py-2 text-sm uppercase tracking-widest transition-colors ${activeCategory === 'gateaux'
                                     ? 'text-gold border-b border-gold'
                                     : 'text-chocolate/60 hover:text-chocolate/90'
                                 }`}
                         >
-                            salées
+                            Salées
                         </button>
                     </div>
                 </div>
@@ -353,12 +363,11 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
                                     style={{ mixBlendMode: "multiply" }}
                                 />
 
-                                {/* Luxury "plus" icon */}
-                                <motion.div
+                                {/* Luxury "plus" icon */}                                <motion.div
                                     className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                                 >
                                     <div className="w-12 h-12 rounded-full bg-gold flex items-center justify-center">
-                                        <Plus className="w-6 h-6 text-white" />
+                                        <Plus className="w-6 h-6 text-white" aria-hidden="true" />
                                     </div>
                                 </motion.div>
                             </div>
@@ -407,6 +416,7 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
                         <button
                             onClick={closeDetail}
                             className="absolute top-8 right-8 z-20 text-white/80 hover:text-white"
+                            aria-label="Fermer la vue détaillée"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -417,6 +427,7 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
                         <button
                             className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 text-white/70 hover:text-white"
                             onClick={() => navigateDetail('prev')}
+                            aria-label="Image précédente"
                         >
                             <ChevronLeft className="w-10 h-10" />
                         </button>
@@ -424,6 +435,7 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
                         <button
                             className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20 text-white/70 hover:text-white"
                             onClick={() => navigateDetail('next')}
+                            aria-label="Image suivante"
                         >
                             <ChevronRight className="w-10 h-10" />
                         </button>
@@ -457,11 +469,23 @@ const Gallery = ({ onNavigate }: GalleryProps) => {
 
                                 <p className="text-chocolate-light mb-8">
                                     {galleryItems.find(item => item.id === detailView)?.description}
-                                </p>                            </div>
-                        </motion.div>
+                                </p>                            </div>                        </motion.div>
                     </motion.div>
                 )}
-            </AnimatePresence>
+            </AnimatePresence>            {/* Style for screen reader only content */}
+            <style>{`
+                .sr-only {
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    padding: 0;
+                    margin: -1px;
+                    overflow: hidden;
+                    clip: rect(0, 0, 0, 0);
+                    white-space: nowrap;
+                    border-width: 0;
+                }
+            `}</style>
         </section>
     );
 };

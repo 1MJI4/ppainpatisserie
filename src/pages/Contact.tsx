@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Clock, MapPin, Mail, Facebook, Instagram, Navigation, ShoppingBag, Calendar, Cake, Coffee, Sandwich, Pizza, MessageSquare } from 'lucide-react';
+import { Phone, Clock, MapPin, Mail, Facebook, Instagram, Navigation, ShoppingBag, Cake, Coffee, Sandwich, Pizza, MessageSquare } from 'lucide-react';
 import ReviewsWidget from './ReviewsWidget'; // Importez le nouveau composant
 
 // Types de produits disponibles
@@ -70,11 +70,8 @@ const Contact = () => {
               <div className="h-64 bg-gray-200">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2517.8601043774498!2d4.406505776878711!3d50.867813198846275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c31cc226b111%3A0xa4fb9a85afdd6fea!2sChau.%20de%20Louvain%20906%2C%201140%20Evere%2C%20Belgique!5e0!3m2!1sfr!2s!4v1718465132057!5m2!1sfr!2s" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
+                  className="w-full h-full border-none"
                   allowFullScreen 
-                  loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Plan d'accès Pain Patisserie"
                 />
@@ -339,13 +336,19 @@ const Contact = () => {
                   </div>
                   
                   {pickupOption === 'custom' && (
-                    <input
-                      type="date"
-                      value={customDate}
-                      onChange={(e) => setCustomDate(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:border-gold"
-                      min={new Date().toISOString().split('T')[0]}
-                    />
+                    <div className="flex flex-col">
+                      <label htmlFor="customDate" className="sr-only">Date de retrait personnalisée</label>
+                      <input
+                        id="customDate"
+                        type="date"
+                        value={customDate}
+                        onChange={(e) => setCustomDate(e.target.value)}
+                        className="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:border-gold"
+                        min={new Date().toISOString().split('T')[0]}
+                        aria-label="Date de retrait personnalisée"
+                        placeholder="Sélectionnez une date"
+                      />
+                    </div>
                   )}
                 </div>
                 

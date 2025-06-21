@@ -38,13 +38,7 @@ function Home({ onNavigate }: HomeProps) {  const [activeImage, setActiveImage] 
       description: "Des pâtisseries fines et gourmandes, préparées chaque jour avec des produits de qualité"
     }
   ];
-
-  const featuredProducts = [
-    { name: "Trompe-l'œil aux Fruits", image: "/photos/trompeoeil4.jpeg" },
-    { name: "Gâteau 3 Chocolats", image: "/photos/grandgat2.jpeg" },
-    { name: "Tarte aux Fraises", image: "/photos/tartefraise2.jpeg" },
-    { name: "Entremets Exotique", image: "/photos/mix.jpeg" },
-  ];
+  // Removed unused featuredProducts array
     const changeImage = (newIndex: number) => {
     if (isTransitioning) return;
     
