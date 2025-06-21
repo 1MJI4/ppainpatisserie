@@ -10,6 +10,7 @@ import ScrollIndicator from './components/ScrollIndicator';
 import PageLoader from './components/PageLoader';
 import './styles.css';
 import './animations.css';
+import './fixes.css'; // Import des correctifs CSS
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -36,13 +37,12 @@ function App() {
       }, 800); // Correspond à la durée de l'animation
     }
   };
-
   // Observer les sections pour détecter quand elles sont visibles
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.2
+      threshold: 0.1 // Réduit le seuil pour qu'il se déclenche plus tôt
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -51,6 +51,10 @@ function App() {
           // Activer l'animation de la section
           entry.target.classList.add('visible');
           entry.target.classList.add('section-visible');
+          
+          // Rendre la section explicitement visible
+          (entry.target as HTMLElement).style.opacity = '1';
+          (entry.target as HTMLElement).style.transform = 'translateY(0)';
           
           // Mettre à jour la section active
           const id = entry.target.id;
@@ -75,8 +79,7 @@ function App() {
         observer.unobserve(section);
       });
     };
-  }, [isPageLoaded]);
-  // Animation de chargement de la page
+  }, [isPageLoaded]);  // Animation de chargement de la page
   useEffect(() => {
     // Réduire le temps de chargement pour éviter les problèmes
     const timer = setTimeout(() => {
@@ -85,6 +88,14 @@ function App() {
       
       // Ajouter une classe pour les animations d'entrée
       document.body.classList.add('content-visible');
+      
+      // Rendre toutes les sections visibles explicitement
+      document.querySelectorAll('.section-home, .section-about, .section-gallery, .section-contact').forEach(section => {
+        (section as HTMLElement).style.opacity = '1';
+        (section as HTMLElement).style.transform = 'translateY(0)';
+        section.classList.add('visible');
+        section.classList.add('section-visible');
+      });
     }, 1000); // Réduit à 1 seconde au lieu de 2
 
     return () => clearTimeout(timer);
@@ -104,27 +115,26 @@ function App() {
       <PageLoader />
       <CustomCursor />
       <Header onNavigate={scrollToSection} currentPage={activeSection} />
-      
-      {/* Section Home */}
-      <section id="home" className="section-home min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
+        {/* Section Home */}
+      <section id="home" className="section-home visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
         <Home onNavigate={scrollToSection} />
         <ScrollIndicator targetSection="about" onClick={scrollToSection} />
       </section>
       
       {/* Section About */}
-      <section id="about" className="section-about min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
+      <section id="about" className="section-about visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
         <About onNavigate={scrollToSection} />
         <ScrollIndicator targetSection="gallery" onClick={scrollToSection} />
       </section>
       
       {/* Section Gallery */}
-      <section id="gallery" className="section-gallery min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
+      <section id="gallery" className="section-gallery visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
         <Gallery onNavigate={scrollToSection} />
         <ScrollIndicator targetSection="contact" onClick={scrollToSection} />
       </section>
       
       {/* Section Contact */}
-      <section id="contact" className="section-contact min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
+      <section id="contact" className="section-contact visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
         <Contact />
       </section>
       

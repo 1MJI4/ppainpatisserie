@@ -1,0 +1,28 @@
+/* Styles de correction pour assurer la visibilité des sections */
+.section-home, 
+.section-about, 
+.section-gallery, 
+.section-contact {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* S'assurer que les animations ne rendent pas le contenu invisible */
+.section-visible,
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* S'assurer que les conteneurs sont pleinement visibles */
+#about, #gallery, #home, #contact {
+  display: block !important;
+  opacity: 1 !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  visibility: visible !important;
+}

@@ -2,12 +2,10 @@ interface AboutProps {
   onNavigate?: (page: string) => void; // Made optional
 }
 
-const About = ({}: AboutProps) => {
-  return (
-    <main className="pt-24">
+const About = ({ onNavigate: _onNavigate }: AboutProps) => {  return (
+    <div className="pt-24 w-full">
       {/* Hero Section */}
-      <section className="relative h-[50vh] md:h-[60vh] bg-cover bg-center flex items-center" style={{ backgroundImage: "url('/photos/comptoir3.jpeg')" }}>
-        <div className="absolute inset-0 bg-chocolate/60"></div>
+      <div className="relative h-[50vh] md:h-[60vh] bg-cover bg-center flex items-center" style={{ backgroundImage: "url('/photos/comptoir3.jpeg')" }}>        <div className="absolute inset-0 bg-chocolate/60"></div>
         <div className="container mx-auto px-6 relative z-10 text-center">
           <h1 className="text-4xl md:text-6xl font-playfair text-white mb-4">Notre Histoire</h1>
           <div className="w-24 h-px bg-gold mx-auto mb-6"></div>
@@ -15,10 +13,10 @@ const About = ({}: AboutProps) => {
             L'art de la pâtisserie depuis 1987
           </p>
         </div>
-      </section>
+      </div>
 
       {/* Our Story Section */}
-      <section className="py-20 bg-cream">
+      <div className="py-20 bg-cream">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -57,13 +55,12 @@ const About = ({}: AboutProps) => {
               <div className="rounded-lg overflow-hidden shadow-lg mt-8">
                 <img src="/photos/grandgat4.jpeg" alt="Pâtisseries" className="w-full h-full object-cover" />
               </div>
-            </div>
-          </div>
+            </div>          </div>
         </div>
-      </section>
+      </div>
 
       {/* Our Values */}
-      <section className="py-20 bg-white">
+      <div className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-sm uppercase tracking-[0.25em] text-gold mb-4 font-medium">Nos Valeurs</h2>
@@ -112,13 +109,12 @@ const About = ({}: AboutProps) => {
               <p className="text-chocolate/80 text-center">
                 Nous respectons les méthodes artisanales et les recettes traditionnelles qui ont fait leurs preuves à travers les générations.
               </p>
-            </div>
-          </div>
+            </div>          </div>
         </div>
-      </section>
+      </div>
 
       {/* Our Specialties */}
-      <section className="py-20 bg-cover bg-center relative" style={{ backgroundImage: "url('/photos/grandgat7.jpeg')" }}>
+      <div className="py-20 bg-cover bg-center relative" style={{ backgroundImage: "url('/photos/grandgat7.jpeg')" }}>
         <div className="absolute inset-0 bg-chocolate/70"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
@@ -206,13 +202,12 @@ const About = ({}: AboutProps) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </a>
-            </div>
-          </div>
+            </div>          </div>
         </div>
-      </section>
+      </div>
 
       {/* Team or Testimonial */}
-      <section className="py-20 bg-cream">
+      <div className="py-20 bg-cream">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-sm uppercase tracking-[0.25em] text-gold mb-4 font-medium">Ils Nous Font Confiance</h2>
@@ -269,11 +264,10 @@ const About = ({}: AboutProps) => {
                 <p className="font-playfair text-chocolate">Sophie Martens</p>
                 <p className="text-chocolate/60 text-sm">Cliente quotidienne</p>
               </div>
-            </div>
-          </div>
+            </div>          </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 };
 

@@ -84,7 +84,7 @@ const galleryItems = [
     }
 ];
 
-const Gallery = ({}: GalleryProps) => {
+const Gallery = ({ onNavigate: _onNavigate }: GalleryProps) => {
     const [activeCategory, setActiveCategory] = useState('all');
     const [filteredItems, setFilteredItems] = useState(galleryItems);
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -140,10 +140,8 @@ const Gallery = ({}: GalleryProps) => {
         }
 
         setDetailView(filteredItems[newIndex].id);
-    };
-
-    return (
-        <section id="gallery" className="py-32 bg-[#faf7f2] relative overflow-hidden">
+    };    return (
+        <div className="py-32 bg-[#faf7f2] relative overflow-hidden w-full">
             {/* Subtle luxury background elements */}
             <div className="absolute inset-0 bg-[url('/subtle-pattern.png')] opacity-5 pointer-events-none"></div>
             <div className="absolute right-0 bottom-0 w-96 h-96 bg-gradient-to-t from-gold/5 to-transparent rounded-full filter blur-3xl"></div>
@@ -215,11 +213,9 @@ const Gallery = ({}: GalleryProps) => {
                                         >
                                             <h4 className="font-playfair text-3xl text-chocolate mb-4">
                                                 {item.title}
-                                            </h4>
-                                            <p className="text-chocolate-light mb-8 font-light">
+                                            </h4>                                <p className="text-chocolate-light mb-8 font-light">
                                                 {item.description}
                                             </p>
-
 
                                             <button
                                                 title="Voir plus de détails"
@@ -251,8 +247,7 @@ const Gallery = ({}: GalleryProps) => {
                                 className="w-12 h-12 rounded-full flex items-center justify-center border border-white/40 text-white hover:bg-white/10 transition-colors"
                             >
                                 <ChevronRight className="w-5 h-5" />
-                            </button>
-                        </div>                        {/* Elegant pagination */}
+                            </button>                        </div>                        {/* Elegant pagination */}
                         <div className="absolute bottom-8 left-8 z-20 flex items-center space-x-3">
                             {featuredItems.map((_, index) => (
                                 <button
@@ -269,11 +264,10 @@ const Gallery = ({}: GalleryProps) => {
                             ))}
                         </div>
                     </div>
-                </div>
-
-                {/* Elegant category filter */}
+                </div>                {/* Elegant category filter */}
                 <div className="mb-16">
-                    <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">                        <button
+                    <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+                        <button
                             onClick={() => setActiveCategory('all')}
                             aria-label="Afficher toutes les créations"
                             className={`px-6 py-2 text-sm uppercase tracking-widest transition-colors ${activeCategory === 'all'
@@ -361,9 +355,8 @@ const Gallery = ({}: GalleryProps) => {
                                 <motion.div
                                     className="absolute inset-0 bg-gradient-to-t from-chocolate/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                                     style={{ mixBlendMode: "multiply" }}
-                                />
-
-                                {/* Luxury "plus" icon */}                                <motion.div
+                                />                                {/* Luxury "plus" icon */}
+                                <motion.div
                                     className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                                 >
                                     <div className="w-12 h-12 rounded-full bg-gold flex items-center justify-center">
@@ -380,12 +373,9 @@ const Gallery = ({}: GalleryProps) => {
                                     transition={{ duration: 0.3 }}
                                 >
                                     {item.title}
-                                </motion.h4>
-
-                                <p className="text-chocolate-light/80 font-light mb-3">
+                                </motion.h4>                                <p className="text-chocolate-light/80 font-light mb-3">
                                     {item.description}
                                 </p>
-
 
                             </div>
 
@@ -465,14 +455,15 @@ const Gallery = ({}: GalleryProps) => {
 
                                 <h3 className="font-playfair text-3xl text-chocolate mb-4">
                                     {galleryItems.find(item => item.id === detailView)?.title}
-                                </h3>
-
-                                <p className="text-chocolate-light mb-8">
+                                </h3>                                <p className="text-chocolate-light mb-8">
                                     {galleryItems.find(item => item.id === detailView)?.description}
-                                </p>                            </div>                        </motion.div>
+                                </p>
+                            </div>
+                        </motion.div>
                     </motion.div>
                 )}
-            </AnimatePresence>            {/* Style for screen reader only content */}
+            </AnimatePresence>
+            {/* Style for screen reader only content */}
             <style>{`
                 .sr-only {
                     position: absolute;
@@ -483,10 +474,9 @@ const Gallery = ({}: GalleryProps) => {
                     overflow: hidden;
                     clip: rect(0, 0, 0, 0);
                     white-space: nowrap;
-                    border-width: 0;
-                }
+                    border-width: 0;                }
             `}</style>
-        </section>
+        </div>
     );
 };
 

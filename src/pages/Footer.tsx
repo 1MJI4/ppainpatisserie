@@ -138,9 +138,9 @@ function Footer({ onNavigate }: FooterProps) {
             </ul>
           </div>
         </div>
-        
-        <div className="border-t border-white/10 pt-8 mt-8 text-center text-white/60 text-sm">
-          <p>&copy; {new Date().getFullYear()} Pain Pâtisserie. Tous droits réservés.</p>        </div>
+          <div className="border-t border-white/10 pt-8 mt-8 text-center text-white/60 text-sm">
+          <p>&copy; {new Date().getFullYear()} Pain Pâtisserie. Tous droits réservés.</p>
+        </div>
       </div>
     </footer>
   );
