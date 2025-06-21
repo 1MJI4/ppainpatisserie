@@ -8,7 +8,7 @@ function Header() {
     <header className="header">
       <div className="header-container">
         <div className="logo">
-          <h1>P'Pain Pâtisserie</h1>
+          <h1>Pain Pâtisserie</h1>
         </div>
         
         <button className="mobile-menu-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
