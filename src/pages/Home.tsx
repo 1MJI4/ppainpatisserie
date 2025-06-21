@@ -121,7 +121,7 @@ function Home({ onNavigate }: HomeProps) {  const [activeImage, setActiveImage] 
             </h1>
             <div className="w-24 h-px bg-gold mx-auto mb-6 md:mb-8 animate-expand"></div>
             <p className="text-lg sm:text-xl md:text-2xl text-white max-w-xl mx-auto mb-8 md:mb-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] font-normal tracking-wide text-shadow">
-              L'art de la pâtisserie artisanale depuis 1987
+              L'art de la pâtisserie artisanale
             </p>
             <button 
               onClick={() => scrollToSection('gallery')}
