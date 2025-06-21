@@ -97,7 +97,7 @@ const Contact = () => {
                       </p>
                       <div className="flex space-x-2">
                         <a 
-                          href="https://waze.com/ul?ll=50.867813,4.4086958&navigate=yes" 
+                          href="https://waze.com/ul?ll=50.8587009,4.4132547&navigate=yes" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="inline-flex items-center px-3 py-1.5 bg-[#33ccff] text-white text-sm rounded-md hover:bg-[#33bbee] transition-colors"
