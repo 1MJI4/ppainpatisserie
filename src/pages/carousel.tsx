@@ -63,7 +63,7 @@ function Carousel({ images }: CarouselProps) {
             className={`indicator ${index === currentIndex ? 'active' : ''}`}
             onClick={() => setCurrentIndex(index)}
           >
-            <span className="sr-only">Slides {index + 1}</span>
+            <span className="sr-only">Slide {index + 1}</span>
           </button>
         ))}
       </div>
