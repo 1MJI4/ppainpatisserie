@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 
+interface GalleryProps {
+  onNavigate: (page: string) => void;
+}
+
 // Définition des images de la galerie
 const galleryItems = [
     {
@@ -80,7 +84,7 @@ const galleryItems = [
     }
 ];
 
-const Gallery = () => {
+const Gallery = ({ onNavigate }: GalleryProps) => {
     const [activeCategory, setActiveCategory] = useState('all');
     const [filteredItems, setFilteredItems] = useState(galleryItems);
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -453,9 +457,7 @@ const Gallery = () => {
 
                                 <p className="text-chocolate-light mb-8">
                                     {galleryItems.find(item => item.id === detailView)?.description}
-                                </p>
-
-                            </div>
+                                </p>                            </div>
                         </motion.div>
                     </motion.div>
                 )}

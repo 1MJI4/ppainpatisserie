@@ -1,11 +1,15 @@
 import { Facebook, Instagram, Mail, MapPin, Phone, ChevronRight } from 'lucide-react';
 
-function Footer() {
+interface FooterProps {
+  onNavigate: (page: string) => void;
+}
+
+function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="bg-chocolate text-white pt-20 pb-8">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          <div className="footer-section">
+          <div className="footer-section fade-in-element" style={{"--delay": "1"} as React.CSSProperties}>
             <h3 className="font-playfair text-2xl mb-6 text-gold">Pain Pâtisserie</h3>
             <p className="mb-6 text-white/80 max-w-xs">
               Boulangerie-pâtisserie artisanale à Evere, où nous perpétuons l'art du pain frais,
@@ -33,43 +37,48 @@ function Footer() {
             </div>
           </div>
           
-          <div className="footer-section">
-            <h3 className="font-playfair text-2xl mb-6 text-gold">Navigation</h3>
-            <ul className="space-y-3">
+          <div className="footer-section fade-in-element" style={{"--delay": "2"} as React.CSSProperties}>
+            <h3 className="font-playfair text-2xl mb-6 text-gold">Navigation</h3>            <ul className="space-y-3">
               <li>
-                <a href="/" className="inline-flex items-center text-white/80 hover:text-gold transition-colors duration-300">
+                <a 
+                  href="#home" 
+                  onClick={(e) => { e.preventDefault(); onNavigate('home'); }} 
+                  className="inline-flex items-center text-white/80 hover:text-gold transition-colors duration-300"
+                >
                   <ChevronRight size={16} className="mr-2" /> Accueil
                 </a>
               </li>
               <li>
-                <a href="/patisseries" className="inline-flex items-center text-white/80 hover:text-gold transition-colors duration-300">
+                <a 
+                  href="#gallery" 
+                  onClick={(e) => { e.preventDefault(); onNavigate('gallery'); }} 
+                  className="inline-flex items-center text-white/80 hover:text-gold transition-colors duration-300"
+                >
                   <ChevronRight size={16} className="mr-2" /> Nos Pâtisseries
                 </a>
               </li>
               <li>
-                <a href="/pain-artisanal" className="inline-flex items-center text-white/80 hover:text-gold transition-colors duration-300">
-                  <ChevronRight size={16} className="mr-2" /> Pain Artisanal
-                </a>
-              </li>
-              <li>
-                <a href="/trompe-l-oeil" className="inline-flex items-center text-white/80 hover:text-gold transition-colors duration-300">
-                  <ChevronRight size={16} className="mr-2" /> Trompe-l'œil
-                </a>
-              </li>
-              <li>
-                <a href="/about" className="inline-flex items-center text-white/80 hover:text-gold transition-colors duration-300">
+                <a 
+                  href="#about" 
+                  onClick={(e) => { e.preventDefault(); onNavigate('about'); }} 
+                  className="inline-flex items-center text-white/80 hover:text-gold transition-colors duration-300"
+                >
                   <ChevronRight size={16} className="mr-2" /> À Propos
                 </a>
               </li>
               <li>
-                <a href="/contact" className="inline-flex items-center text-white/80 hover:text-gold transition-colors duration-300">
+                <a 
+                  href="#contact" 
+                  onClick={(e) => { e.preventDefault(); onNavigate('contact'); }} 
+                  className="inline-flex items-center text-white/80 hover:text-gold transition-colors duration-300"
+                >
                   <ChevronRight size={16} className="mr-2" /> Contact
                 </a>
               </li>
             </ul>
           </div>
           
-          <div className="footer-section">
+          <div className="footer-section fade-in-element" style={{"--delay": "3"} as React.CSSProperties}>
             <h3 className="font-playfair text-2xl mb-6 text-gold">Horaires d'ouverture</h3>
             <ul className="space-y-3">
               <li className="flex justify-between text-white/80">
@@ -103,7 +112,7 @@ function Footer() {
             </ul>
           </div>
           
-          <div className="footer-section">
+          <div className="footer-section fade-in-element" style={{"--delay": "4"} as React.CSSProperties}>
             <h3 className="font-playfair text-2xl mb-6 text-gold">Contact</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
