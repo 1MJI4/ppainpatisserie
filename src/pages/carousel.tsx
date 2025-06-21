@@ -31,7 +31,7 @@ function Carousel({ images }: CarouselProps) {
 
   return (
     <div className="carousel">
-      <button className="carousel-button prev" onClick={prevSlide}>
+      <button className="carousel-button prev" onClick={prevSlide} aria-label="Previous slide">
         <ChevronLeft size={24} />
       </button>
       
@@ -52,7 +52,7 @@ function Carousel({ images }: CarouselProps) {
         ))}
       </div>
       
-      <button className="carousel-button next" onClick={nextSlide}>
+      <button className="carousel-button next" onClick={nextSlide} aria-label="Next slide">
         <ChevronRight size={24} />
       </button>
       
@@ -62,7 +62,9 @@ function Carousel({ images }: CarouselProps) {
             key={index} 
             className={`indicator ${index === currentIndex ? 'active' : ''}`}
             onClick={() => setCurrentIndex(index)}
-          />
+          >
+            <span className="sr-only">Slide {index + 1}</span>
+          </button>
         ))}
       </div>
     </div>
