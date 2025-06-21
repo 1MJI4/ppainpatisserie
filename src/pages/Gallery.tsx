@@ -474,8 +474,12 @@ const Gallery = ({ onNavigate: _onNavigate }: GalleryProps) => {
                     overflow: hidden;
                     clip: rect(0, 0, 0, 0);
                     white-space: nowrap;
-                    border-width: 0;                }
+                    border-width: 0;
+                }
             `}</style>
+
+            {/* Élément de transition vers la section About */}
+            <div className="gallery-about-transition w-full bg-gradient-to-b from-[#faf7f2] to-cream h-32 -mb-1 relative z-20"></div>
         </div>
     );
 };

@@ -23,10 +23,14 @@ function App() {
     
     const section = document.getElementById(sectionId);
     if (section) {
+      // Calculer la position de défilement avec un petit offset pour le header
+      const headerHeight = 80; // hauteur approximative du header
+      const sectionTop = section.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+      
       // Animation fluide de défilement
-      section.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      window.scrollTo({
+        top: sectionTop,
+        behavior: 'smooth'
       });
       
       setActiveSection(sectionId);
@@ -79,7 +83,34 @@ function App() {
         observer.unobserve(section);
       });
     };
-  }, [isPageLoaded]);  // Animation de chargement de la page
+  }, [isPageLoaded]);  // Assurer des transitions fluides entre les sections
+  useEffect(() => {
+    // Fonction pour gérer le défilement et améliorer les transitions
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section[id]');
+      const scrollPosition = window.scrollY;
+      
+      // Détecter la section visible
+      sections.forEach((section) => {
+        const sectionTop = (section as HTMLElement).offsetTop;
+        const sectionHeight = (section as HTMLElement).offsetHeight;
+        
+        if (scrollPosition >= sectionTop - 200 && scrollPosition < sectionTop + sectionHeight - 200) {
+          const id = section.getAttribute('id');
+          if (id) {
+            // Ajouter des classes pour améliorer la transition
+            document.getElementById('home')?.classList.add('home-scrolling');
+            document.getElementById('about')?.classList.add('about-scrolling');
+          }
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Animation de chargement de la page
   useEffect(() => {
     // Réduire le temps de chargement pour éviter les problèmes
     const timer = setTimeout(() => {
@@ -109,32 +140,32 @@ function App() {
         scrollToSection(hash);
       }, 1500); // Réduit à 1.5 secondes pour être plus réactif
     }
-  }, [isPageLoaded]);
-  return (
+  }, [isPageLoaded]);  return (
     <div className="app w-full overflow-hidden">
       <PageLoader />
       <CustomCursor />
       <Header onNavigate={scrollToSection} currentPage={activeSection} />
-        {/* Section Home */}
-      <section id="home" className="section-home visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
-        <Home onNavigate={scrollToSection} />
-        <ScrollIndicator targetSection="about" onClick={scrollToSection} />
-      </section>
       
-      {/* Section About */}
-      <section id="about" className="section-about visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
-        <About onNavigate={scrollToSection} />
+      {/* Section Home */}
+      <section id="home" className="section-home visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
+        <Home onNavigate={scrollToSection} />
         <ScrollIndicator targetSection="gallery" onClick={scrollToSection} />
       </section>
       
-      {/* Section Gallery */}
-      <section id="gallery" className="section-gallery visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
+      {/* Section Gallery - maintenant juste après Home */}
+      <section id="gallery" className="section-gallery visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
         <Gallery onNavigate={scrollToSection} />
+        <ScrollIndicator targetSection="about" onClick={scrollToSection} />
+      </section>
+      
+      {/* Section About - maintenant après Gallery */}
+      <section id="about" className="section-about visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
+        <About onNavigate={scrollToSection} />
         <ScrollIndicator targetSection="contact" onClick={scrollToSection} />
       </section>
       
       {/* Section Contact */}
-      <section id="contact" className="section-contact visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0">
+      <section id="contact" className="section-contact visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
         <Contact />
       </section>
       

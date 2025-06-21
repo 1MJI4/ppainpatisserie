@@ -3,9 +3,9 @@ interface AboutProps {
 }
 
 const About = ({ onNavigate: _onNavigate }: AboutProps) => {  return (
-    <div className="pt-24 w-full">
+    <div className="w-full">
       {/* Hero Section */}
-      <div className="relative h-[50vh] md:h-[60vh] bg-cover bg-center flex items-center" style={{ backgroundImage: "url('/photos/comptoir3.jpeg')" }}>        <div className="absolute inset-0 bg-chocolate/60"></div>
+      <div className="relative h-[50vh] md:h-[60vh] bg-cover bg-center flex items-center" style={{ backgroundImage: "url('/photos/comptoir3.jpeg')" }}><div className="absolute inset-0 bg-chocolate/60"></div>
         <div className="container mx-auto px-6 relative z-10 text-center">
           <h1 className="text-4xl md:text-6xl font-playfair text-white mb-4">Notre Histoire</h1>
           <div className="w-24 h-px bg-gold mx-auto mb-6"></div>
@@ -267,6 +267,9 @@ const About = ({ onNavigate: _onNavigate }: AboutProps) => {  return (
             </div>          </div>
         </div>
       </div>
+      
+      {/* Élément de transition vers la section Contact */}
+      <div className="about-contact-transition w-full bg-gradient-to-b from-cream to-white h-32 -mb-1 relative z-20"></div>
     </div>
   );
 };

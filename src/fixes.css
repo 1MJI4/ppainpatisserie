@@ -1,21 +1,14 @@
 /* Styles de correction pour assurer la visibilité des sections */
 .section-home, 
-.section-about, 
 .section-gallery, 
+.section-about, 
 .section-contact {
   opacity: 1 !important;
   transform: translateY(0) !important;
   display: block !important;
   visibility: visible !important;
-}
-
-/* S'assurer que les animations ne rendent pas le contenu invisible */
-.section-visible,
-.visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  display: block !important;
-  visibility: visible !important;
+  padding: 0 !important; /* Éliminer tout padding */
+  margin: 0 !important; /* Éliminer toute marge */
 }
 
 /* S'assurer que les conteneurs sont pleinement visibles */
@@ -25,4 +18,222 @@
   height: auto !important;
   min-height: 100vh !important;
   visibility: visible !important;
+}
+
+/* Éliminer les espaces entre les sections */
+#home {
+  margin-bottom: -2px !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+#gallery {
+  margin-top: -2px !important;
+  padding-top: 0 !important;
+  margin-bottom: -2px !important; /* Nouvelle marge pour lier avec About */
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+#about {
+  margin-top: -2px !important;
+  padding-top: 0 !important;
+  margin-bottom: -2px !important; /* Nouvelle marge pour lier avec Contact */
+  position: relative !important;
+  z-index: 15 !important;
+}
+
+#contact {
+  margin-top: -2px !important;
+  position: relative !important;
+  z-index: 20 !important;
+}
+
+/* Assurer la transition fluide entre sections */
+.section-about > div {
+  padding-top: 0 !important;
+}
+
+/* Classes pour les transitions de défilement */
+.home-scrolling {
+  margin-bottom: -2px !important;
+}
+
+.about-scrolling {
+  margin-top: -2px !important;
+}
+
+/* Animation de transition pour la section About lors du défilement */
+@keyframes fadeInFromBottom {
+  from {
+    opacity: 0.8;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Style pour l'indicateur de défilement */
+.scroll-indicator {
+  position: absolute !important;
+  bottom: 30px !important;
+  z-index: 50 !important;
+}
+
+/* Dégradés de transition entre sections */
+.home-gallery-transition {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100px !important;
+  background: linear-gradient(to bottom, transparent, rgba(47, 27, 20, 0.3)) !important;
+  z-index: 25 !important;
+}
+
+.gallery-about-transition {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100px !important;
+  background: linear-gradient(to bottom, transparent, rgba(47, 27, 20, 0.3)) !important;
+  z-index: 25 !important;
+}
+
+.about-contact-transition {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100px !important;
+  background: linear-gradient(to bottom, transparent, rgba(47, 27, 20, 0.3)) !important;
+  z-index: 25 !important;
+}
+
+/* Optimisations pour mobile */
+
+/* Amélioration de la performance sur mobile */
+@media (max-width: 768px) {
+  /* Réduire la hauteur des sections pour éviter le défilement excessif */
+  .section-home, 
+  .section-gallery, 
+  .section-about, 
+  .section-contact {
+    min-height: 100vh !important;
+    height: auto !important;
+    overflow: hidden !important;
+  }
+
+  /* Améliorer la lisibilité du texte sur mobile */
+  p, li {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+  
+  h1 {
+    font-size: 32px !important;
+    line-height: 1.2 !important;
+  }
+  
+  h2 {
+    font-size: 24px !important;
+    line-height: 1.3 !important;
+  }
+  
+  h3 {
+    font-size: 20px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Améliorer la taille des boutons pour les écrans tactiles */
+  button, 
+  a.button,
+  [role="button"],
+  .btn,
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 48px !important;
+    min-width: 48px !important;
+    padding: 12px 24px !important;
+    font-size: 16px !important;
+    border-radius: 9999px !important;
+  }
+
+  /* Optimiser les transitions pour mobile */
+  .home-gallery-transition,
+  .gallery-about-transition,
+  .about-contact-transition {
+    height: 40px !important;
+  }
+    /* Améliorer le contraste pour la lisibilité sur mobile */
+  [class*="text-white"] {
+    color: rgba(255, 255, 255, 0.95) !important;
+  }
+  
+  [class*="text-chocolate"] {
+    color: rgba(47, 27, 20, 0.95) !important;
+  }
+  
+  /* Optimiser les grilles pour mobile */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  /* Optimiser le padding pour les conteneurs sur mobile */
+  .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  
+  /* Assurer que les éléments interactifs sont suffisamment grands pour être touchés */
+  .scroll-indicator {
+    transform: scale(1.3) !important;
+    bottom: 20px !important;
+  }
+
+  /* Amélioration du menu mobile */
+  header nav {
+    padding-top: 100px !important;
+  }
+
+  header nav ul li a {
+    font-size: 20px !important;
+    padding: 12px 0 !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Ajustements pour la section Gallery sur mobile */
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+    margin-top: 60px !important;
+  }
+
+  .gallery-item {
+    margin-bottom: 16px !important;
+  }
+
+  /* Ajustements pour la section About sur mobile */
+  #about .container {
+    padding-top: 60px !important;
+  }
+
+  /* Ajustements pour la section Contact sur mobile */
+  #contact .container {
+    padding-top: 60px !important;
+  }
+
+  /* Amélioration des transitions entre sections sur mobile */
+  .page-transitioning {
+    transition: all 0.5s ease-in-out !important;
+  }
+}
+
+/* Fix pour le défilement fluide sur tous les appareils */
+html, body {
+  overflow-x: hidden !important;
+  scroll-behavior: smooth !important;
 }
