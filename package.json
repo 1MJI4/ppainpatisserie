@@ -18,6 +18,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.5",
     "react-lazy-load-image-component": "^1.6.3",
     "react-swipeable": "^7.0.2"
   },
