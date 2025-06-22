@@ -185,7 +185,7 @@ function Home({ onNavigate }: HomeProps) {
                       />
 
                       {/* Contenu du texte avec effets spéciaux */}
-                      <div className="text-center py-12 px-8 relative z-10">
+                      <div className="text-center py-8 px-4 sm:py-12 sm:px-8 relative z-10">
                         {/* Symbole décoratif */}
                         <motion.div 
                           className="mb-6 relative"
@@ -197,11 +197,9 @@ function Home({ onNavigate }: HomeProps) {
                             <path d="M12 2L9.1 9.1 2 12l7.1 2.9L12 22l2.9-7.1L22 12l-7.1-2.9z"/>
                           </svg>
                         </motion.div>
-                        
-                        {/* Titre principal avec effet de masque */}
-                        <div className="overflow-hidden mb-4">
+                          {/* Titre principal avec effet de masque */}                        <div className="overflow-hidden mb-4 px-4">
                           <motion.h1 
-                            className="text-5xl md:text-7xl font-playfair font-semibold tracking-tighter text-white relative"
+                            className="text-3xl md:text-7xl font-playfair font-semibold tracking-tighter text-white relative"
                             initial={{ y: 100 }}
                             animate={{ y: 0 }}
                             transition={{ delay: 0.3, duration: 0.8 }}
@@ -243,11 +241,9 @@ function Home({ onNavigate }: HomeProps) {
                             transition={{ delay: 1.2, duration: 0.3, type: 'spring' }}
                           />
                         </div>
-                        
-                        {/* Titre du slide avec effet de révélation par caractère */}
-                        <div className="overflow-hidden mb-3">
+                          {/* Titre du slide avec effet de révélation par caractère */}                        <div className="overflow-hidden mb-3 px-4">
                           <motion.h2 
-                            className="text-2xl md:text-3xl font-playfair text-white/90 split-text-animation"
+                            className="text-lg md:text-3xl font-playfair text-white/90 split-text-animation"
                             initial={{ y: 50 }}
                             animate={{ y: 0 }}
                             transition={{ delay: 0.9, duration: 0.5 }}
@@ -266,10 +262,9 @@ function Home({ onNavigate }: HomeProps) {
                             ))}
                           </motion.h2>
                         </div>
-                        
-                        {/* Sous-titre avec effet de fondu progressif */}
+                          {/* Sous-titre avec effet de fondu progressif */}
                         <motion.div 
-                          className="overflow-hidden mb-10"
+                          className="overflow-hidden mb-10 px-4"
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           transition={{ delay: 1.4, duration: 0.6 }}
@@ -279,11 +274,11 @@ function Home({ onNavigate }: HomeProps) {
                           </p>
                         </motion.div>
                         
-                        {/* Bouton d'action avec effet d'encre qui se répand */}
-                        <motion.div
+                        {/* Bouton d'action avec effet d'encre qui se répand */}                        <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 1.6, duration: 0.5 }}
+                          className="px-4"
                         >
                           <button 
                             onClick={() => scrollToSection('gallery')}
@@ -305,11 +300,9 @@ function Home({ onNavigate }: HomeProps) {
             )
           ))}
         </AnimatePresence>
-      </div>
-
-      {/* Indicateurs de slides - AMÉLIORÉS */}
+      </div>      {/* Indicateurs de slides - AMÉLIORÉS */}      
       <div className="absolute bottom-10 left-0 right-0 z-30">
-        <div className="flex justify-center space-x-4">
+        <div className="flex justify-center space-x-2 sm:space-x-4 px-4">
           {slides.map((_, index) => (
             <button
               key={index}

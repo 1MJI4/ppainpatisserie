@@ -166,11 +166,11 @@
 
   /* Optimisations pour les écrans tactiles */
   .detail-view {
-    padding: 2rem 1rem;
+    padding: 1rem 0.5rem;
   }
 
   .detail-content {
-    max-height: 85vh;
+    max-height: 90vh;
   }
 
   .swipe-hint {
@@ -180,6 +180,131 @@
     border-radius: 1rem;
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
+  }
+  
+  /* Ajustements spécifiques pour les mobiles */
+  .gallery-carousel-container {
+    height: 65vh !important;
+    min-height: 400px !important;
+  }
+  
+  .carousel-text-container {
+    padding: 1rem !important;
+  }
+  
+  .gallery-item-title {
+    font-size: 1.5rem !important;
+  }
+  
+  /* Ajustements pour la grille de galerie */
+  .gallery-grid-container {
+    gap: 1.5rem !important;
+  }
+
+  /* Ajustements pour les images du carousel */
+  .carousel-image {
+    object-position: center;
+  }
+
+  /* Améliorations des contrôles du carousel pour mobile */
+  .slider-indicator {
+    min-width: 36px;
+    min-height: 36px;
+    margin: 0 2px;
+  }
+
+  /* Ajustements pour les boutons de filtre */
+  .gallery-filter-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .filter-button {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-carousel-container {
+    height: 80vh !important;
+    min-height: 450px !important;
+  }
+  
+  .carousel-slide-container {
+    flex-direction: column !important;
+    height: 100% !important;
+  }
+  
+  .carousel-image-container {
+    height: 65% !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+  
+  .carousel-text-container {
+    height: 35% !important;
+    width: 100% !important;
+    padding: 0.75rem !important;
+    overflow-y: auto !important;
+  }
+  
+  .gallery-filter-buttons {
+    padding: 0 !important;
+    margin-top: 1rem !important;
+  }
+  
+  .gallery-filter-button {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.7rem !important;
+  }
+  
+  .pagination-indicator {
+    bottom: 1rem !important;
+    left: 1rem !important;
+  }
+
+  /* Amélioration de la lisibilité du texte sur mobile */
+  .carousel-text-container h4 {
+    font-size: 1.25rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .carousel-text-container p {
+    font-size: 0.875rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Meilleure visibilité des badges de catégorie */
+  .carousel-text-container .text-xs {
+    font-size: 0.65rem !important;
+  }
+
+  /* Amélioration de la vue détaillée sur mobile */
+  .detail-content {
+    flex-direction: column !important;
+    max-height: 85vh !important;
+  }
+
+  .detail-image-container {
+    width: 100% !important;
+    height: 40vh !important;
+    min-height: 250px !important;
+  }
+
+  .detail-info {
+    width: 100% !important;
+    padding: 1rem !important;
+  }
+
+  /* Amélioration des interactions tactiles */
+  .nav-arrow {
+    width: 40px !important;
+    height: 40px !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
   }
 }
 
@@ -200,6 +325,7 @@
 /* Transition entre les éléments de la galerie */
 .detail-content {
   overflow-y: auto;
+  overflow-x: hidden; /* Évite le défilement horizontal */
 }
 
 /* Ombre artistique pour accentuer les éléments */
@@ -274,5 +400,42 @@
   
   .border-gold {
     border-color: #b27800 !important;
+  }
+}
+
+/* Prévention des dépassements sur petits écrans */
+.carousel-text-container {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* Amélioration du curseur sur les éléments interactifs */
+.carousel-image-container,
+.gallery-item,
+.suggestion-item,
+button,
+.close-button,
+.nav-arrow {
+  cursor: pointer;
+}
+
+/* Amélioration des transitions entre les slides */
+.carousel-slide-container {
+  transition: all 0.3s ease-out;
+}
+
+/* Fix pour iOS Safari - évite le débordement de contenu */
+@supports (-webkit-touch-callout: none) {
+  .gallery-carousel-container {
+    height: 80vh !important;
+  }
+  
+  .carousel-slide-container {
+    height: 100% !important;
+  }
+  
+  .carousel-image-container,
+  .carousel-text-container {
+    position: relative !important;
   }
 }

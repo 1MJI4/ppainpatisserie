@@ -156,10 +156,9 @@ const CarouselPage: React.FC<CarouselPageProps> = ({ onNavigate }) => {
         <p className="text-center text-chocolate/80 max-w-2xl mx-auto mb-12">
           Découvrez notre univers à travers cette sélection de photos qui illustrent notre passion pour la pâtisserie artisanale.
         </p>
-        
-        <div 
+          <div 
           ref={carouselRef}
-          className="relative overflow-hidden rounded-2xl shadow-2xl group carousel-container mx-auto"
+          className="relative overflow-hidden rounded-2xl shadow-2xl group carousel-container mx-auto max-w-full"
           {...handleMouseEvents}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -203,10 +202,9 @@ const CarouselPage: React.FC<CarouselPageProps> = ({ onNavigate }) => {
                       ? `translateX(${-dragOffset}px) scale(${1 - Math.abs(dragOffset) * 0.0005})` 
                       : undefined
                   }}
-                >
-                  {/* Background Image with Parallax Effect */}
+                >                  {/* Background Image with Parallax Effect */}
                   <div 
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out"
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out carousel-image-container"
                     style={{
                       ...getCarouselSlideStyle(image.src),
                       transform: isActive ? 'scale(1.05)' : 'scale(1.1)',
@@ -218,12 +216,12 @@ const CarouselPage: React.FC<CarouselPageProps> = ({ onNavigate }) => {
                   </div>
 
                   {/* Content */}
-                  {(image.title || image.subtitle || image.description) && (
-                    <div className="absolute inset-0 flex items-end justify-center pb-20 px-6 z-10">
-                      <div className="text-center max-w-lg space-y-4">
+                  {(image.title || image.subtitle || image.description) && (                    <div className="absolute inset-0 flex items-end justify-center pb-10 sm:pb-20 px-4 sm:px-6 z-10 carousel-text-container"
+                    >
+                      <div className="text-center max-w-lg space-y-4 carousel-text">
                         {image.title && (
                           <h2 
-                            className={`text-3xl sm:text-4xl md:text-5xl font-bold font-playfair text-white leading-tight tracking-wide transition-all duration-1000 ${
+                            className={`text-2xl sm:text-4xl md:text-5xl font-bold font-playfair text-white leading-tight tracking-wide transition-all duration-1000 ${
                               isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                             }`}
                             style={{
@@ -272,9 +270,8 @@ const CarouselPage: React.FC<CarouselPageProps> = ({ onNavigate }) => {
 
           {/* Navigation Arrows - Hidden on small screens */}
           {showArrows && (
-            <>
-              <button
-                className="absolute top-1/2 left-4 transform -translate-y-1/2 z-30 bg-gold/20 hover:bg-gold/40 active:bg-gold/50 rounded-full p-3 transition-all duration-300 backdrop-blur-md border border-gold/30 hover:border-gold/60 hidden sm:flex items-center justify-center group-hover:scale-110"
+            <>              <button
+                className="absolute top-1/2 left-4 transform -translate-y-1/2 z-30 bg-gold/20 hover:bg-gold/40 active:bg-gold/50 rounded-full p-3 transition-all duration-300 backdrop-blur-md border border-gold/30 hover:border-gold/60 sm:flex items-center justify-center group-hover:scale-110 carousel-arrow touch-manipulation"
                 onClick={goToPrev}
                 aria-label="Slide précédent"
               >
@@ -282,7 +279,7 @@ const CarouselPage: React.FC<CarouselPageProps> = ({ onNavigate }) => {
               </button>
               
               <button
-                className="absolute top-1/2 right-4 transform -translate-y-1/2 z-30 bg-gold/20 hover:bg-gold/40 active:bg-gold/50 rounded-full p-3 transition-all duration-300 backdrop-blur-md border border-gold/30 hover:border-gold/60 hidden sm:flex items-center justify-center group-hover:scale-110"
+                className="absolute top-1/2 right-4 transform -translate-y-1/2 z-30 bg-gold/20 hover:bg-gold/40 active:bg-gold/50 rounded-full p-3 transition-all duration-300 backdrop-blur-md border border-gold/30 hover:border-gold/60 sm:flex items-center justify-center group-hover:scale-110 carousel-arrow touch-manipulation"
                 onClick={goToNext}
                 aria-label="Slide suivant"
               >

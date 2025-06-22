@@ -230,7 +230,7 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
             });
         };
         preloadImages();
-    }, [featuredItems]);// Configuration des swipes pour le mobile - Simplifiée
+    }, [featuredItems]);    // Configuration des swipes pour le mobile - Simplifiée
     const swipeHandlers = useSwipeable({
         onSwipedLeft: () => {
             setCurrentSlide((prev) => (prev === featuredItems.length - 1 ? 0 : prev + 1));
@@ -242,9 +242,9 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
         },
         preventScrollOnSwipe: false,
         trackMouse: false,
-        swipeDuration: 500,
+        swipeDuration: 750,
         touchEventOptions: { passive: true }
-    });    // Auto-rotation du slider avec pause au survol - Temps augmenté pour éviter les flashs
+    });// Auto-rotation du slider avec pause au survol - Temps augmenté pour éviter les flashs
     useEffect(() => {
         if (isScrolled) return; // Ne pas faire défiler si l'utilisateur a scrollé plus bas
         
@@ -252,7 +252,7 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
             if (!isShareMenuOpen && document.visibilityState === 'visible') {
                 setCurrentSlide((prev) => (prev === featuredItems.length - 1 ? 0 : prev + 1));
             }
-        }, 8000); // Augmenté à 8 secondes pour laisser plus de temps à chaque image
+        }, 10000); // Augmenté à 10 secondes pour laisser plus de temps à chaque image
         
         return () => clearInterval(interval);
     }, [currentSlide, isShareMenuOpen, featuredItems.length, isScrolled]);
@@ -569,15 +569,14 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
                             swipeHandlers.ref(el);
                         }
                     }}
-                >
-                    <div className="relative h-[50vh] sm:h-[70vh] overflow-hidden rounded-lg shadow-xl">
+                >                    <div className="relative h-[50vh] sm:h-[70vh] overflow-hidden rounded-lg shadow-xl gallery-carousel-container">
                         {/* Indicateur de chargement */}
                         {isLoading && (
                             <div className="absolute inset-0 flex items-center justify-center bg-chocolate/10 z-50">
                                 <div className="loader-ring"><div></div><div></div><div></div><div></div></div>
                             </div>
                         )}
-                          {/* Instructions de swipe pour mobile */}
+                        {/* Instructions de swipe pour mobile */}
                         {isMobile && (
                             <motion.div 
                                 className="absolute top-4 left-1/2 transform -translate-x-1/2 z-40 bg-black/30 text-white text-xs py-1 px-3 rounded-full backdrop-blur-sm"
@@ -587,8 +586,7 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
                                 <span>Glissez pour explorer</span>
                             </motion.div>
                         )}
-                          {/* Slides - Correction pour éviter les flashs d'images */}
-                        <AnimatePresence initial={false}>
+                          {/* Slides - Correction pour éviter les flashs d'images */}                        <AnimatePresence initial={false}>
                             {featuredItems.map((item, index) => (
                                 <motion.div
                                     key={`showcase-${item.id}`}
@@ -599,17 +597,17 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
                                     transition={{ duration: 1.2, ease: 'easeInOut' }}
                                     style={{ zIndex: currentSlide === index ? 1 : 0 }}
                                 >
-                                    <div className="h-full w-full flex flex-col md:flex-row">
+                                    <div className="h-full w-full flex flex-col md:flex-row carousel-slide-container">
                                         {/* Panneau image avec parallaxe */}
-                                        <div className="w-full md:w-3/4 h-full relative overflow-hidden cursor-pointer" onClick={() => openDetail(item.id)}>
+                                        <div className="w-full md:w-3/4 h-full relative overflow-hidden cursor-pointer carousel-image-container" onClick={() => openDetail(item.id)}>
                                             {/* Superposition artistique */}
                                             <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-black/10 z-10"></div>
                                             
-                                            {/* Image principale avec préchargement pour éviter les flashs */}
-                                            <div className="absolute inset-0">                                                <img 
+                                            {/* Image principale avec préchargement pour éviter les flashs */}                                <div className="absolute inset-0">                                                <img 
                                                     src={item.image} 
                                                     alt={item.altText || item.title}
                                                     className={`carousel-image ${currentSlide === index ? 'active' : 'inactive'}`}
+                                                    loading="eager"
                                                 />
                                             </div>
 
@@ -623,7 +621,7 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
                                         </div>
 
                                         {/* Panneau contenu avec animation séquentielle */}
-                                        <div className="w-full md:w-1/4 bg-white p-6 sm:p-8 md:p-12 flex flex-col justify-center relative overflow-hidden">
+                                        <div className="w-full md:w-1/4 bg-white p-6 sm:p-8 md:p-12 flex flex-col justify-center relative overflow-hidden carousel-text-container">
                                             {/* Forme décorative */}
                                             <div className="absolute -top-16 -right-16 w-32 h-32 rounded-full bg-gold/5"></div>
                                             
@@ -686,13 +684,13 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-4 px-2">
+                    <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-4 px-2 gallery-filter-buttons">
                         {categories.map(category => (
                             <button
                                 key={category.id}
                                 type="button"
                                 onClick={() => setActiveCategory(category.id)}
-                                className="filter-button px-4 sm:px-6 py-2 text-sm uppercase tracking-widest transition-all duration-300 relative overflow-hidden focus:outline-none touch-manipulation" // AJOUT: touch-manipulation                                aria-label={`Filtrer par ${category.label}`}
+                                className="filter-button px-4 sm:px-6 py-2 text-sm uppercase tracking-widest transition-all duration-300 relative overflow-hidden focus:outline-none touch-manipulation gallery-filter-button" // AJOUT: touch-manipulation                                aria-label={`Filtrer par ${category.label}`}
                                 aria-pressed="false"
                                 data-category-id={category.id}
                             >
@@ -713,11 +711,9 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
                             </button>
                         ))}
                     </div>
-                </motion.div>
-
-                {/* Grille de galerie avec animations d'apparition */}
+                </motion.div>                {/* Grille de galerie avec animations d'apparition */}                
                 <motion.div
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 sm:gap-y-24"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-8 sm:gap-y-16 lg:gap-y-24 px-4 sm:px-8 gallery-grid-container"
                     layout
                     transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
                 >
@@ -735,21 +731,21 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
                             <div
                                 className="aspect-[4/5] overflow-hidden relative cursor-pointer shadow-xl mb-6 rounded-sm"
                                 onClick={() => openDetail(item.id)}
-                            >
-                                {/* Image de produit avec effet de zoom */}
+                            >                                {/* Image de produit avec effet de zoom */}
                                 <motion.div
-                                    className="h-full w-full bg-cover bg-center relative"
+                                    className="h-full w-full bg-cover bg-center relative carousel-image-container"
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                                >
+                                >                                    
                                     <LazyLoadImage
                                         src={item.image}
                                         alt={item.altText || item.title}
                                         effect="blur"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover carousel-image"
                                         wrapperClassName="w-full h-full"
-                                        threshold={300}
+                                        threshold={100}
                                         placeholderSrc="/placeholder-image.jpg"
+                                        visibleByDefault={index < 3}
                                     />
                                 </motion.div>
 
@@ -827,9 +823,8 @@ const Gallery: React.FC<GalleryProps> = ({ onNavigate }) => {
 
                             {/* Informations produit avec animations */}
                             <div className="text-center px-4">
-                                {/* Titre avec effet de couleur au survol */}
-                                <motion.h4
-                                    className="font-playfair text-xl text-chocolate mb-2 group-hover:text-gold transition-colors duration-300"
+                                {/* Titre avec effet de couleur au survol */}                                                <motion.h4
+                                                    className="font-playfair text-xl text-chocolate mb-2 group-hover:text-gold transition-colors duration-300 gallery-item-title"
                                     animate={{ color: hoverIndex === item.id ? "var(--color-gold)" : "var(--color-chocolate)" }}
                                     transition={{ duration: 0.3 }}
                                 >
