@@ -6,9 +6,7 @@ import Carousel from './pages/Carousel';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import { useState, useEffect } from 'react';
-import CustomCursor from './components/CustomCursor';
 import ScrollIndicator from './components/ScrollIndicator';
-import PageLoader from './components/PageLoader';
 import './styles.css';
 import './animations.css';
 import './fixes.css'; // Import des correctifs CSS
@@ -21,21 +19,21 @@ function App() {
   const scrollToSection = (sectionId: string) => {
     // Ajouter une classe de transition avant le défilement
     document.body.classList.add('page-transitioning');
-    
+
     const section = document.getElementById(sectionId);
     if (section) {
       // Calculer la position de défilement avec un petit offset pour le header
       const headerHeight = 80; // hauteur approximative du header
       const sectionTop = section.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-      
+
       // Animation fluide de défilement
       window.scrollTo({
         top: sectionTop,
         behavior: 'smooth'
       });
-      
+
       setActiveSection(sectionId);
-      
+
       // Supprimer la classe de transition après le défilement
       setTimeout(() => {
         document.body.classList.remove('page-transitioning');
@@ -56,15 +54,15 @@ function App() {
           // Activer l'animation de la section
           entry.target.classList.add('visible');
           entry.target.classList.add('section-visible');
-          
+
           // Rendre la section explicitement visible
           (entry.target as HTMLElement).style.opacity = '1';
           (entry.target as HTMLElement).style.transform = 'translateY(0)';
-          
+
           // Mettre à jour la section active
           const id = entry.target.id;
           setActiveSection(id);
-          
+
           // Mettre à jour l'URL sans recharger la page
           window.history.pushState(null, '', `#${id}`);
         }
@@ -74,7 +72,7 @@ function App() {
     // Observer toutes les sections
     const sectionElements = document.querySelectorAll('section[id]');
     const sections = Array.from(sectionElements) as HTMLElement[];
-    
+
     sections.forEach(section => {
       observer.observe(section);
     });
@@ -90,12 +88,12 @@ function App() {
     const handleScroll = () => {
       const sections = document.querySelectorAll('section[id]');
       const scrollPosition = window.scrollY;
-      
+
       // Détecter la section visible
       sections.forEach((section) => {
         const sectionTop = (section as HTMLElement).offsetTop;
         const sectionHeight = (section as HTMLElement).offsetHeight;
-        
+
         if (scrollPosition >= sectionTop - 200 && scrollPosition < sectionTop + sectionHeight - 200) {
           const id = section.getAttribute('id');
           if (id) {
@@ -106,7 +104,7 @@ function App() {
         }
       });
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -117,10 +115,10 @@ function App() {
     const timer = setTimeout(() => {
       setIsPageLoaded(true);
       document.body.classList.add('page-loaded');
-      
+
       // Ajouter une classe pour les animations d'entrée
       document.body.classList.add('content-visible');
-      
+
       // Rendre toutes les sections visibles explicitement
       document.querySelectorAll('.section-home, .section-about, .section-gallery, .section-contact').forEach(section => {
         (section as HTMLElement).style.opacity = '1';
@@ -141,21 +139,19 @@ function App() {
         scrollToSection(hash);
       }, 1500); // Réduit à 1.5 secondes pour être plus réactif
     }
-  }, [isPageLoaded]);  return (
+  }, [isPageLoaded]); return (
     <div className="app w-full overflow-hidden">
-      <PageLoader />
-      <CustomCursor />
       <Header onNavigate={scrollToSection} currentPage={activeSection} />
-      
+
       {/* Section Home */}
       <section id="home" className="section-home visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
         <Home onNavigate={scrollToSection} />
         <ScrollIndicator targetSection="gallery" onClick={scrollToSection} />
       </section>
-      
+
       {/* Section Gallery - maintenant juste après Home */}
       <section id="gallery" className="section-gallery visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
-        <Gallery onNavigate={scrollToSection} />
+        <Gallery/>
         <ScrollIndicator targetSection="carousel" onClick={scrollToSection} />
       </section>
       <section id="carousel" className="section-carousel visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
@@ -167,12 +163,12 @@ function App() {
         <About onNavigate={scrollToSection} />
         <ScrollIndicator targetSection="contact" onClick={scrollToSection} />
       </section>
-      
+
       {/* Section Contact */}
       <section id="contact" className="section-contact visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
         <Contact />
       </section>
-      
+
       <Footer onNavigate={scrollToSection} />
     </div>
   );

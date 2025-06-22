@@ -268,21 +268,486 @@
     0 0 10px rgba(214, 196, 169, 0.1);
 }
 
-/* Adaptation pour mobile */
-@media (max-width: 768px) {
-  .hero-content {
-    padding: 0 1rem;
-  }
-  
-  .hero-content h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-content h2 {
-    font-size: 1.5rem;
-  }
-  
-  .hero-content p {
+/* --- Styles de base (Mobile-First) --- */
+
+.home-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Occupe tout l'écran */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+}
+
+.home-background-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.1); /* Léger zoom pour l'effet */
+    animation: slow-pan 20s ease-in-out infinite alternate;
+}
+
+@keyframes slow-pan {
+    from { background-position: 45% 50%; }
+    to { background-position: 55% 50%; }
+}
+
+.home-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(47, 27, 20, 0.7) 10%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.5) 100%);
+}
+
+.home-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    padding: 1rem;
+}
+
+/* --- Animation de la signature --- */
+
+.signature-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.signature-svg {
+    width: 100%;
+    height: auto;
+}
+
+.signature-path {
+    stroke: #d6c4a9; /* --color-gold */
+    stroke-width: 3.5; /* Ligne légèrement plus fine */
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    /* Animation d'écriture CORRIGÉE */
+    stroke-dasharray: 2000; /* Valeur sûre pour couvrir tout le tracé */
+    stroke-dashoffset: 2000;
+    animation: draw-signature 2.5s cubic-bezier(0.65, 0, 0.35, 1) 0.5s forwards; /* Timing plus naturel */
+}
+
+@keyframes draw-signature {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* --- Typographie et Boutons --- */
+
+.home-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; /* 20px */
+    font-style: italic;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.5px;
+}
+
+.home-cta-button {
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid rgba(214, 196, 169, 0.8); /* --color-gold */
+    border-radius: 50px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.home-cta-button:hover,
+.home-cta-button:focus {
+    background-color: rgba(214, 196, 169, 0.9);
+    color: #4a3a2d; /* --color-chocolate */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Indicateur de défilement */
+.home-scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    color: rgba(255, 255, 255, 0.7);
+    animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 10px); }
+}
+
+/* --- Section Hero (Mobile-First) --- */
+.hero-section {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 1rem;
+}
+
+.hero-background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.hero-image-wrapper, .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(47, 27, 20, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
     font-size: 1rem;
-  }
+    font-weight: 600;
+    border: 2px solid white;
+    border-radius: 50px;
+    background-color: transparent;
+    color: white;
+    
+    /* Préparation pour l'animation */
+    position: relative;
+    overflow: hidden; /* Cache le pseudo-élément qui dépasse */
+    z-index: 1;
+    
+    /* Comportement */
+    cursor: pointer;
+    transition: color 0.4s ease-in-out; /* Transition pour la couleur du texte */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Pseudo-élément pour l'animation de remplissage */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(250, 209, 137);
+    transform: scaleX(0); /* Commence caché (largeur 0) */
+    transform-origin: left; /* L'animation part de la gauche */
+    transition: transform 0.4s ease-in-out;
+    z-index: -1; /* Se place derrière le texte */
+}
+
+/* État au survol (hover) */
+.cta-button:hover::before {
+    transform: scaleX(1); /* Remplit tout le bouton */
+}
+
+.cta-button:hover {
+    color: #ffd0a1; /* Change la couleur du texte pour qu'il soit lisible */
+}
+
+/* État au clic (active) */
+.cta-button:active {
+    transform: scale(0.98); /* Effet d'enfoncement */
+}
+
+/* --- Fin des styles du bouton --- */
+
+/* --- Sections de contenu génériques --- */
+.content-section {
+    padding: 4rem 1.5rem;
+}
+
+.bg-cream {
+    background-color: #fdf8f3;
+}
+
+.content-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.25rem;
+    color: #7a6652;
+    margin-bottom: 2.5rem;
+}
+
+.lead {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #5a4a3b;
+}
+
+/* --- Grille des spécialités --- */
+.specialties-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.specialty-card {
+    text-align: center;
+}
+
+.specialty-image-container {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.specialty-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.specialty-card:hover .specialty-image {
+    transform: scale(1.05);
+}
+
+.specialty-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #7a6652;
+}
+
+.specialty-card p {
+    color: #5a4a3b;
+    line-height: 1.6;
+}
+
+/* --- Section Emplacement --- */
+.location-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.location-info {
+    text-align: center;
+}
+
+.location-address, .location-hours {
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: #5a4a3b;
+}
+
+/* --- NOUVEAUX STYLES POUR LES BOUTONS D'ITINÉRAIRE --- */
+.location-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column; /* Mobile-first: boutons empilés */
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.map-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    max-width: 300px; /* Largeur max des boutons sur mobile */
+    border: none;
+}
+
+.map-button .button-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.map-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.waze-button {
+    background-color: #33ccff;
+    color: white;
+}
+
+.gmaps-button {
+    background-color: #4285F4;
+    color: white;
+}
+/* --- FIN DES NOUVEAUX STYLES --- */
+
+.location-map {
+    width: 100%;
+    height: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* --- Styles pour tablettes et plus (min-width: 768px) --- */
+@media (min-width: 768px) {
+    .content-section {
+        padding: 6rem 2rem;
+    }
+    .specialties-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+    }
+    .location-grid {
+        grid-template-columns: 1fr 1.5fr; /* La carte prend plus de place */
+        text-align: left;
+    }
+    .location-info {
+        text-align: left;
+    }
+    /* Les boutons se placent côte à côte sur les grands écrans */
+    .location-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+    .map-button {
+        width: auto; /* La largeur s'adapte au contenu */
+    }
+}
+
+/* --- Styles pour la section Événements (Design Élaboré) --- */
+.events-section-elaborate {
+    background-color: #fdf8f3; /* --color-cream */
+    overflow: hidden; /* Pour contenir les animations */
+}
+
+.events-layout {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile-first: une seule colonne */
+    gap: 2rem;
+    align-items: center;
+}
+
+.events-image-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    min-height: 300px;
+}
+
+.events-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.events-content .section-title {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.events-description {
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #5a4a3b;
+    margin-bottom: 2rem;
+}
+
+.events-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem 0;
+    text-align: left;
+}
+
+.events-feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #5a4a3b;
+}
+
+.feature-icon {
+    flex-shrink: 0; /* Empêche l'icône de se déformer */
+    color: #a89382; /* --color-chocolate-light */
+    width: 22px;
+    height: 22px;
+}
+
+.events-cta-button {
+    /* Styles du bouton existant, légèrement ajustés si nécessaire */
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    background-color: #7a6652; /* --color-chocolate */
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block; /* Pour que le text-align:left fonctionne */
+}
+
+.events-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(122, 102, 82, 0.3);
+}
+
+/* --- Styles pour tablettes et plus (min-width: 992px) --- */
+@media (min-width: 992px) {
+    .events-layout {
+        grid-template-columns: 1fr 1.1fr; /* Layout asymétrique */
+        gap: 4rem;
+    }
+    .events-image-container {
+        min-height: 500px;
+    }
 }
