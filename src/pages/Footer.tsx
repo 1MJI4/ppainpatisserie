@@ -9,7 +9,7 @@ function Footer({ onNavigate }: FooterProps) {
     <footer className="bg-chocolate text-white pt-20 pb-8">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          <div className="footer-section fade-in-element" style={{"--delay": "1"} as React.CSSProperties}>
+          <div className="footer-section fade-in-element footer-delay-1">
             <h3 className="font-playfair text-2xl mb-6 text-gold">Pain Pâtisserie</h3>
             <p className="mb-6 text-white/80 max-w-xs">
               Boulangerie-pâtisserie artisanale à Evere, où nous perpétuons l'art du pain frais,
@@ -37,7 +37,7 @@ function Footer({ onNavigate }: FooterProps) {
             </div>
           </div>
           
-          <div className="footer-section fade-in-element" style={{"--delay": "2"} as React.CSSProperties}>
+          <div className="footer-section fade-in-element footer-delay-2">
             <h3 className="font-playfair text-2xl mb-6 text-gold">Navigation</h3>            <ul className="space-y-3">
               <li>
                 <a 
@@ -78,7 +78,7 @@ function Footer({ onNavigate }: FooterProps) {
             </ul>
           </div>
           
-          <div className="footer-section fade-in-element" style={{"--delay": "3"} as React.CSSProperties}>
+          <div className="footer-section fade-in-element footer-delay-3">
             <h3 className="font-playfair text-2xl mb-6 text-gold">Horaires d'ouverture</h3>
             <ul className="space-y-3">
               <li className="flex justify-between text-white/80">
@@ -112,7 +112,7 @@ function Footer({ onNavigate }: FooterProps) {
             </ul>
           </div>
           
-          <div className="footer-section fade-in-element" style={{"--delay": "4"} as React.CSSProperties}>
+          <div className="footer-section fade-in-element footer-delay-4">
             <h3 className="font-playfair text-2xl mb-6 text-gold">Contact</h3>
             <ul className="space-y-4">
               <li className="flex items-start">

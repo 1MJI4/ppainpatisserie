@@ -5,7 +5,7 @@ interface AboutProps {
 const About = ({ onNavigate: _onNavigate }: AboutProps) => {  return (
     <div className="w-full">
       {/* Hero Section */}
-      <div className="relative h-[50vh] md:h-[60vh] bg-cover bg-center flex items-center" style={{ backgroundImage: "url('/photos/comptoir3.jpeg')" }}><div className="absolute inset-0 bg-chocolate/60"></div>
+      <div className="relative h-[50vh] md:h-[60vh] bg-cover bg-center flex items-center about-hero-bg"><div className="absolute inset-0 bg-chocolate/60"></div>
         <div className="container mx-auto px-6 relative z-10 text-center">
           <h1 className="text-4xl md:text-6xl font-playfair text-white mb-4">Notre Histoire</h1>
           <div className="w-24 h-px bg-gold mx-auto mb-6"></div>
@@ -114,7 +114,7 @@ const About = ({ onNavigate: _onNavigate }: AboutProps) => {  return (
       </div>
 
       {/* Our Specialties */}
-      <div className="py-20 bg-cover bg-center relative" style={{ backgroundImage: "url('/photos/grandgat7.jpeg')" }}>
+      <div className="py-20 bg-cover bg-center relative about-specialties-bg">
         <div className="absolute inset-0 bg-chocolate/70"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">

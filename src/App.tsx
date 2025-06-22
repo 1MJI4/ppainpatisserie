@@ -2,6 +2,7 @@ import Header from './pages/Header';
 import Gallery from './pages/Gallery';
 import Footer from './pages/Footer';
 import Home from './pages/Home';
+import Carousel from './pages/Carousel';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import { useState, useEffect } from 'react';
@@ -155,9 +156,12 @@ function App() {
       {/* Section Gallery - maintenant juste après Home */}
       <section id="gallery" className="section-gallery visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
         <Gallery onNavigate={scrollToSection} />
+        <ScrollIndicator targetSection="carousel" onClick={scrollToSection} />
+      </section>
+      <section id="carousel" className="section-carousel visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
+        <Carousel onNavigate={scrollToSection} />
         <ScrollIndicator targetSection="about" onClick={scrollToSection} />
       </section>
-      
       {/* Section About - maintenant après Gallery */}
       <section id="about" className="section-about visible section-visible min-h-screen w-full flex flex-col justify-center overflow-hidden m-0 relative">
         <About onNavigate={scrollToSection} />
