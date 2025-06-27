@@ -1,74 +1,29 @@
-/* Animations pour le one-page design */
-
-/* Animation de fade-in pour les sections lors du défilement */
+/*
+  ANIMATIONS - MOBILE FIRST
+*/
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-/* Animation Ken Burns pour les images du diaporama */
 @keyframes kenBurns {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
 }
-
-/* Animation Ken Burns inversée pour alterner avec l'effet principal */
 @keyframes kenBurnsReverse {
-  0% {
-    transform: scale(1.08);
-  }
-  50% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.08);
-  }
+  0% { transform: scale(1.08); }
+  50% { transform: scale(1); }
+  100% { transform: scale(1.08); }
 }
-
-/* Animation de transition entre les pages */
-.page-transitioning {
-  overflow: hidden;
-}
-
-.page-transitioning::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  z-index: 1000;
-  pointer-events: none;
-  animation: pageTransition 0.8s ease-out forwards;
-}
-
 @keyframes pageTransition {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
+.fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+.ken-burns { animation: kenBurns 10s ease-in-out infinite; }
+.ken-burns-reverse { animation: kenBurnsReverse 10s ease-in-out infinite; }
+.page-transitioning { animation: pageTransition 0.8s ease-out forwards; }
 
 /* Animation de transition lorsqu'une section devient visible */
 .section-visible {

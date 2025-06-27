@@ -17,7 +17,7 @@ const CarouselPage: React.FC<CarouselPageProps> = ({ onNavigate }) => {
   // Sample carousel images for the page
   const images = [
     {
-      src: "/photos/acceuil.jpeg",
+      src: "/photos/trompeoeil.jpeg",
       alt: "Vitrine de notre pâtisserie à Evere",
       title: "Pain Pâtisserie",
       subtitle: "Artisanal",

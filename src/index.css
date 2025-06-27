@@ -2,19 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  INDEX.CSS - MOBILE FIRST
+*/
 :root {
-  --color-chocolate: #3a2618;
-  --color-gold: #b69d74;
-  --color-gold-light: #d8c4a9;
-  --color-cream: #faf7f2;
-  --color-white: #ffffff;
-  --font-playfair: 'Playfair Display', serif;
-  --font-poppins: 'Poppins', sans-serif;
-  
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-chocolate: #7a6652;
+  --color-gold: #e7c77f;
+  --color-gold-light: #f7e7b7;
+  --color-cream: #fdf8f3;
+  --color-dark: #5a4a3b;
+  --color-white: #fff;
+}
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-dark);
+  min-height: 100vh;
+}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.1rem; }
+h4, h5, h6 { font-size: 1rem; }
+@media (min-width: 768px) {
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.3rem; }
+}
+@media (max-width: 400px) {
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.1rem; }
 }
 
 @layer base {

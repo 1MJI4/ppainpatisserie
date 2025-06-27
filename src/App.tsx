@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import ScrollIndicator from './components/ScrollIndicator';
 import './styles.css';
 import './animations.css';
-import './fixes.css'; // Import des correctifs CSS
+
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');

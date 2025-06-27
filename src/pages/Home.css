@@ -271,41 +271,66 @@
 /* --- Styles de base (Mobile-First) --- */
 
 .home-section {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Occupe tout l'écran */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    color: white;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
 }
 
 .home-background-image {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    transform: scale(1.1); /* Léger zoom pour l'effet */
-    animation: slow-pan 20s ease-in-out infinite alternate;
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1);
+  animation: slow-pan 20s ease-in-out infinite alternate;
 }
 
 @keyframes slow-pan {
-    from { background-position: 45% 50%; }
-    to { background-position: 55% 50%; }
+  from { background-position: 45% 50%; }
+  to { background-position: 55% 50%; }
 }
 
 .home-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(47, 27, 20, 0.7) 10%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.5) 100%);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
 }
 
 .home-content {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    padding: 1rem;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+}
+
+.home-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-gold-light);
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .home-title { font-size: 3rem; }
+  .home-subtitle { font-size: 1.3rem; }
+}
+
+@media (max-width: 400px) {
+  .home-title { font-size: 1.3rem; }
+  .home-subtitle { font-size: 1rem; }
 }
 
 /* --- Animation de la signature --- */
@@ -351,6 +376,10 @@
 }
 
 .home-cta-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
     padding: 0.8rem 2rem;
     font-size: 0.9rem;
     font-weight: 500;
@@ -363,14 +392,9 @@
     cursor: pointer;
     transition: all 0.3s ease;
     -webkit-tap-highlight-color: transparent;
-}
-
-.home-cta-button:hover,
-.home-cta-button:focus {
-    background-color: rgba(214, 196, 169, 0.9);
-    color: #4a3a2d; /* --color-chocolate */
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: max-content;
+    /* Pour forcer le centrage même dans un parent flex ou grid */
+    align-self: center;
 }
 
 /* Indicateur de défilement */
@@ -423,6 +447,11 @@
     position: relative;
     z-index: 1;
     max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-content h1 {
@@ -440,6 +469,10 @@
 }
 
 .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
@@ -447,15 +480,11 @@
     border-radius: 50px;
     background-color: transparent;
     color: white;
-    
-    /* Préparation pour l'animation */
     position: relative;
-    overflow: hidden; /* Cache le pseudo-élément qui dépasse */
+    overflow: hidden;
     z-index: 1;
-    
-    /* Comportement */
     cursor: pointer;
-    transition: color 0.4s ease-in-out; /* Transition pour la couleur du texte */
+    transition: color 0.4s ease-in-out;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -614,15 +643,22 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.waze-button {
-    background-color: #33ccff;
-    color: white;
+.map-button.waze-button {
+  background-color: #00b8ff !important;
+  color: white !important;
+}
+.map-button.gmaps-button {
+  background-color: #1a73e8 !important;
+  color: 
+  white !important;
+}
+.events-cta-button{
+  background-color: #ff7032 !important;
+  color: 
+  white !important;
 }
 
-.gmaps-button {
-    background-color: #4285F4;
-    color: white;
-}
+
 /* --- FIN DES NOUVEAUX STYLES --- */
 
 .location-map {
